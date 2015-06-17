@@ -1,0 +1,44 @@
+<html>
+    <head><title>DELTA TASK</title></head>
+    <body bgcolor="white">
+        <h2 id="a1" align="center">FORM REGISTRATION</h2><br><br>
+        <form id="a2" action="phppart.php" method="POST" enctype="multipart/form-data">
+        <div id="a3">
+            Roll No(9digit):<br><br>
+            Name:<br><br>
+            Department:<br><br>
+            Year Of Study:<br><br>
+            Email:<br><br>
+            Password:<br><br>
+            Profile Picture:<br><br>
+        </div>
+        <div id="a4">
+            <input type="text" name="rno" required/><br><br>
+            <input type="text" name="name" required/><br><br>
+            <select name='dept' required>
+            	<option value="ece">ECE</option>
+            	<option value="comp">Comp</option>
+            	<option value="civil">Civil</option>
+            	<option value="prod">Prod</option>
+            	<option value="meta">Meta</option>
+            	<option value="ice">ICE</option>
+            	<option value="mech">MECH</option>
+            	<option value="eee">EEE</option>
+            	<option value="chem">Chem</option>
+            </select><br><br>
+	        
+	        <select name='year' required>
+	            <option value="1">1</option>
+	            <option value="2">2</option>
+	            <option value="3">3</option>
+	            <option value="4">4</option>
+	        </select><br><br>
+	        <input type="email" name="mail" required/><br><br>
+	        <input type="password" name="pass" required/><br><br>
+	        <input type="file" name="file" required/><br><br>
+	        <input type="submit" name="submit"/>
+        </div>    
+        </form>
+        <link rel="stylesheet" type="text/css" href="CSS.css">
+    </body>
+</html>
