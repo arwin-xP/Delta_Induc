@@ -42,7 +42,7 @@ VALUES('$rno','$name','$dept','$year','$mail','$pass')";
 		$num = $num / 10;
 		$tens = $num % 10;
 		$num = $num / 10;
-		$sum = intval($unit) + intval($tens);
+		$sum = intval($units) + intval($tens);
 		$condDoub = 1;
 		while($num > 0) {
 			if($condDoub == 1) {
@@ -54,7 +54,7 @@ VALUES('$rno','$name','$dept','$year','$mail','$pass')";
 					$doub = $doub / 10;
 					$tens = $doub % 10;
 					$doub = $doub / 10;
-					$sum = intval($sum) + intval($unit) + intval($tens);
+					$sum = intval($sum) + intval($units) + intval($tens);
 				}
 				else {
 					$sum = intval($sum) + intval($doub);
@@ -62,9 +62,9 @@ VALUES('$rno','$name','$dept','$year','$mail','$pass')";
 				$condDoub = 0;
 			}
 			else {
-				$unit = $num % 10;
+				$units = $num % 10;
 				$num = $num / 10;
-				$sum = intval($sum) + intval($unit);
+				$sum = intval($sum) + intval($units);
 				$condDoub = 1;
 			}
 		}
