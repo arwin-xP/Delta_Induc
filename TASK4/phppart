@@ -24,6 +24,63 @@ $pass=$_POST['pass'];
 
 $sql="INSERT INTO reg(rno,name,dept,year,mail,pass) 
 VALUES('$rno','$name','$dept','$year','$mail','$pass')";
+
+	//Checking if the ID has already been set before
+	$previousIDresult = mysql_query("SELECT * FROM reg ORDER BY simply DESC LIMIT 1");
+	$previousID = mysql_result($previousIDresult, 0, 'id');
+	if( $previousID < 100000008) {
+		$previousID = 100000007;
+	}
+	else {
+		$previousID = intval($previousID) + 1;
+	}
+	//Generating the id
+	function genID($num) {
+		$onum = $num;
+		$sum = 0;
+		$units = $num % 10;
+		$num = $num / 10;
+		$tens = $num % 10;
+		$num = $num / 10;
+		$sum = intval($unit) + intval($tens);
+		$condDoub = 1;
+		while($num > 0) {
+			if($condDoub == 1) {
+				$toDoub = $num % 10;
+				$num = $num / 10;
+				$doub = $toDoub * 2;
+				if($doub > 9) {
+					$units = $doub % 10;
+					$doub = $doub / 10;
+					$tens = $doub % 10;
+					$doub = $doub / 10;
+					$sum = intval($sum) + intval($unit) + intval($tens);
+				}
+				else {
+					$sum = intval($sum) + intval($doub);
+				}
+				$condDoub = 0;
+			}
+			else {
+				$unit = $num % 10;
+				$num = $num / 10;
+				$sum = intval($sum) + intval($unit);
+				$condDoub = 1;
+			}
+		}
+		if($sum % 10 == 0) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+	//Checking if it's a valid id
+	while( !genID($previousID) ) {
+		$previousID = intval($previousID) + 1;
+	} 
+
+
 echo '<p>UPDATED</p>';
 $imageFileType = pathinfo(basename($_FILES['file']['name']),PATHINFO_EXTENSION);
 if($_FILES['file']['name'])
@@ -32,11 +89,28 @@ if($_FILES['file']['name'])
 	{
 		$new_file_name =$rno;
 			move_uploaded_file($_FILES['file']['tmp_name'],$new_file_name.".".$imageFileType);
-		$message = 'Congratulations!  Your file was accepted.';
+		echo 'Congratulations!  Your file was accepted.';
 	}
 	else
 	{
-		$message = ' There is an error :  '.$_FILES['file']['error'];
+		echo ' There is an error :  '.$_FILES['file']['error'];
 	}
-}}
+}
+
+if($imageFileType != "jpg" && $imageFileType != "jpeg" && $imageFileType != "png" && $imageFileType != "gif") {
+			$uploadOk = 0;
+		}
+if($uploadOk == 0) {
+	echo "The image wasn't uploaded, try again in 5 seconds";
+	header( 'refresh:5; url=index.html' );
+	}
+	else {
+//Checking if the roll number was already entered
+if(is_dir($target_dir)) {
+	rmdirContents($target_dir);
+			}
+
+
+
+}
 ?>
