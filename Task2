@@ -1,0 +1,83 @@
+<html>
+
+<head>
+
+<style>
+#graph
+{
+	width: 500px;
+	height: 500px;
+	border-left: 5px solid black;
+        border-right: 5px solid black;
+	border-bottom: 5px solid black;
+	background-color: white;
+}
+#buttondiv
+{
+	text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="buttondiv">
+<button type="button" onclick="input()">Value</button>
+<button type="button" onclick="sort()">Sort</button>
+</div>
+
+<br>
+<br>
+
+<div>
+<canvas id="graph"></canvas>
+</div>
+
+<script>
+var i=0; 
+var ht=[];
+var n;
+var val;
+function input()
+{
+	val=prompt("Enter a value");
+	val=Number(val);
+	ht[i]=val;
+    i++;
+    draw();
+}
+function draw()
+{
+    var ctx=document.getElementById("graph").getContext("2d");
+    ctx.clearRect(0,0,document.getElementById("graph").width,document.getElementById("graph").height);
+	ctx.fillStyle="green";
+    for(j=0,k=1;j<ht.length;j++,k+=2) 
+    {
+	    n=20*k;
+	    ctx.fillRect(n,(document.getElementById("graph").height-ht[j]),20,ht[j]);
+	    ctx.fillText(ht[j],n,20);
+	}
+}
+function sort()
+{
+	var temp;
+	for(m=0;m<ht.length;m++)
+	{
+		for(n=0;n<ht.length-1;n++)
+		{
+			if(ht[n]>ht[n+1])
+			{
+				temp=ht[n];
+			    ht[n]=ht[n+1];
+			    ht[n+1]=temp;
+			}
+		}
+	}
+	draw();
+}
+</script>
+
+</body>
+
+</html>
